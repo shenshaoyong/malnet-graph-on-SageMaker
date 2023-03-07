@@ -2,7 +2,7 @@ import os
 import itertools
 from tqdm import tqdm
 from joblib import Parallel, delayed
-
+import shutil
 
 def model_search(gpu, malnet_tiny, group, metric, epochs, model, K, num_layers, hidden_dim, lr, dropout, train_ratio):
     from config import args
@@ -106,17 +106,17 @@ def search_all_preprocess():
 
 
 def search_all_models():
-    gpus = [2]
+    gpus = [0]
 
     models = ['gin']
     layers = [5]
     hidden_dims = [64]
     learning_rates = [0.0001]
     dropouts = [0]
-    epochs = 500
+    epochs = 10
     metric = 'macro-F1'
     groups = ['family']  # , 'family'
-    malnet_tiny = False
+    malnet_tiny = True
     train_ratios = [1.0]  # , 0.01, 0.001
 
     # Search for GCN, GraphSage, GIN
@@ -172,3 +172,7 @@ if __name__ == '__main__':
     # search_all_preprocess()
     search_all_models()
     # run_best_models()
+    
+    src='./results'
+    dst='/opt/ml/model/results'
+    shutil.copytree(src, dst)
