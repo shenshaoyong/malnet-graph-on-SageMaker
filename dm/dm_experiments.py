@@ -11,7 +11,7 @@ sys.path.insert(1, '..')
 from utils import get_split_info
 from classify import classify
 from dm import get_embedding, get_kernel_embedding
-
+import shutil
 
 def run_experiment(args_og, files_train, files_val, files_test, y_train, y_val, y_test, train_ratios, wl_train_ratios):
     args = copy.deepcopy(args_og)
@@ -52,7 +52,7 @@ def run_param_search():
         'train_ratio': 1.0,
         'val_ratio': 0.1,
         'test_ratio': 0.2,
-        'malnet_tiny': False,
+        'malnet_tiny': True,
     })
     groups = ['type', 'family']
 
@@ -116,7 +116,7 @@ def run_best_params():
         'train_ratio': 1.0,
         'val_ratio': 0.1,
         'test_ratio': 0.2,
-        'malnet_tiny': False,
+        'malnet_tiny': True,
     })
 
     files_train, files_val, files_test, y_train, y_val, y_test, label_dict = get_split_info(args)
@@ -168,6 +168,9 @@ def run_best_params():
 
 if __name__ == '__main__':
     run_param_search()
+    src='./results'
+    dst='/opt/ml/model/results'
+    shutil.copytree(src, dst)
 
 
 

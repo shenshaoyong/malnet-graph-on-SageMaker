@@ -21,7 +21,7 @@ args = {
 
     'malnet_tiny': True,  # True = use MalNet-Tiny; False = use Malnet
     'malnet_dir': '/raid/sfreitas3/malnet-graphs/',  # ** USER SPECIFIED DIRECTORY TO MALNET DATA **
-    'malnet_tiny_dir': '/raid/sfreitas3/malnet-graphs-tiny/'  # ** USER SPECIFIED DIRECTORY TO MALNET-TINY DATA **
+    'malnet_tiny_dir': '/opt/ml/input/data/train/malnet-graphs-tiny/'  # ** USER SPECIFIED DIRECTORY TO MALNET-TINY DATA **
 }
 
 
